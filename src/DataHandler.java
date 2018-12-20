@@ -13,4 +13,35 @@ public class DataHandler {
     ArrayList<String> cardNumber = new ArrayList<String>();
     ArrayList<String> graded = new ArrayList<String>();
 
+    public void addToQuantity(int quantity){
+        this.quantity.add(quantity);
+    }
+    public void addToFirstName(String firstName){
+        this.firstName.add(firstName);
+    }
+    public void addToLastName(String lastName){
+        this.lastName.add(lastName);
+    }
+    public void addToYear(String year){
+        this.year.add(year);
+    }
+    public void addToBrand(String brand){
+        this.brand.add(brand);
+    }
+    public void addToProduct(String product){
+        this.product.add(product);
+    }
+    public void addToCardType(String cardType){
+        this.cardType.add(cardType);
+    }
+    public void addExtraAttributes(String attributes){
+        extraAttributes.add(attributes);
+    }
+    public void addToCardNumber(String cardNumber){
+        this.cardNumber.add(cardNumber);
+    }
+    public void addGraded(String graded){
+        this.graded.add(graded);
+    }
+
 }
