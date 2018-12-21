@@ -2,7 +2,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import javax.swing.JLabel;
+import javax.swing.*;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,12 +19,36 @@ public class ExcelHandler
     Row row;
     Cell cell;
     boolean isNull = false;
+    String directory = "";
 
     public ExcelHandler(JLabel label) {
         label.setText("Reading in the excel file...");
-        try { InputStream inputStream = this.inp = new FileInputStream("res/How to track cards.xlsx");Throwable localThrowable3 = null;
+        // We need to actually point the software to the file because it will not export....
+        findFile();
+        try { InputStream inputStream = this.inp = new FileInputStream(directory);Throwable localThrowable3 = null;
             try { wb = WorkbookFactory.create(inp);
                 sheet = wb.getSheetAt(0);
+                label.setText("Phase 1... Overall Completion: 0%");
+                readQuantity();
+                label.setText("Phase 2... Overall Completion: 10%");
+                readFirstName();
+                label.setText("Phase 3... Overall Completion: 20%");
+                readLastName();
+                label.setText("Phase 4... Overall Completion: 30%");
+                readYear();
+                label.setText("Phase 5... Overall Completion: 40%");
+                readBrand();
+                label.setText("Phase 6... Overall Completion: 50%");
+                readProduct();
+                label.setText("Phase 7... Overall Completion: 60%");
+                readCardType();
+                label.setText("Phase 8... Overall Completion: 70%");
+                readExtraAttributes();
+                label.setText("Phase 9... Overall Completion: 80%");
+                readCardNumber();
+                label.setText("Phase 10... Overall Completion: 90%");
+                readGraded();
+                label.setText("Reading complete... Moving to phase 3...");
             }
             catch (Throwable localThrowable1)
             {
@@ -34,29 +59,26 @@ public class ExcelHandler
             }
         }
         catch (IOException localIOException) {
-            System.out.println("Cannot find the file...");
+            label.setText("Wrong File Selected...");
+            findFile();
         }
-        label.setText("Phase 1... Overall Completion: 0%");
-        readQuantity();
-        label.setText("Phase 2... Overall Completion: 10%");
-        readFirstName();
-        label.setText("Phase 3... Overall Completion: 20%");
-        readLastName();
-        label.setText("Phase 4... Overall Completion: 30%");
-        readYear();
-        label.setText("Phase 5... Overall Completion: 40%");
-        readBrand();
-        label.setText("Phase 6... Overall Completion: 50%");
-        readProduct();
-        label.setText("Phase 7... Overall Completion: 60%");
-        readCardType();
-        label.setText("Phase 8... Overall Completion: 70%");
-        readExtraAttributes();
-        label.setText("Phase 9... Overall Completion: 80%");
-        readCardNumber();
-        label.setText("Phase 10... Overall Completion: 90%");
-        readGraded();
-        label.setText("Reading complete... Moving to phase 3...");
+
+    }
+    private void findFile(){
+        JFileChooser chooser = new JFileChooser(); //The file chooser
+        chooser.setCurrentDirectory(new java.io.File(".")); //This is the directory where the JAR file is
+        chooser.setDialogTitle("Choose the excel file"); //Yup
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY); //We only want ONE file
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { //If they select the document
+            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+            directory = String.valueOf(chooser.getSelectedFile());
+            System.out.println("DIRECTORY = " + directory );
+
+        } else {
+            System.out.println("No Selection ");
+
+        }
     }
 
     private void readQuantity() {
