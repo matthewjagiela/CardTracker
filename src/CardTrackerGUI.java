@@ -23,6 +23,7 @@ public class CardTrackerGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 statusLabel.setText("Please wait while I read from the excel sheet...");
+                stageTwo();
             }
         });
         xButton.addActionListener(new ActionListener() {
@@ -31,10 +32,14 @@ public class CardTrackerGUI extends JFrame {
                 System.out.println(rootPanel.getWidth());
             }
         });
+        setResizable(false);
     }
 
-    public void stageTwo(){
-        //This is going to go and read all of the data we need from excel.
-
+    public void stageTwo()
+    {
+        System.out.println("Called phase two");
+        ExcelHandler excelHandler = new ExcelHandler(statusLabel);
     }
+
+    public void stageThree(JLabel label, DataHandler data) {}
 }
