@@ -49,6 +49,8 @@ public class ExcelHandler
                 label.setText("Phase 10... Overall Completion: 90%");
                 readGraded();
                 label.setText("Reading complete... Moving to phase 3...");
+                CardTrackerGUI cards = new CardTrackerGUI();
+                cards.stageThree(label,data);
             }
             catch (Throwable localThrowable1)
             {
@@ -58,7 +60,7 @@ public class ExcelHandler
                 if (inputStream != null) if (localThrowable3 != null) try { inputStream.close(); } catch (Throwable localThrowable2) { localThrowable3.addSuppressed(localThrowable2); } else inputStream.close();
             }
         }
-        catch (IOException localIOException) {
+        catch (IOException | ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException localIOException) {
             label.setText("Wrong File Selected...");
             findFile();
         }
@@ -148,7 +150,7 @@ public class ExcelHandler
                 int numberOfRows = sheet.getPhysicalNumberOfRows();
                 cell = row.getCell(3);
                 if (String.valueOf(cell) != "") {
-                    data.addToYear(String.valueOf(cell));
+                    data.addToYear(String.format("%.0f", cell.getNumericCellValue()));
                 }
                 else {
                     data.addToYear("");

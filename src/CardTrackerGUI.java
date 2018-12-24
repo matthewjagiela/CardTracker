@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class CardTrackerGUI extends JFrame {
 
@@ -35,5 +36,13 @@ public class CardTrackerGUI extends JFrame {
         ExcelHandler excelHandler = new ExcelHandler(statusLabel);
     }
 
-    public void stageThree(JLabel label, DataHandler data) {}
+    public void stageThree(JLabel label, DataHandler data) {
+        label.setText("Creating Links... Please wait...");
+        new LinkHandler(data,label); //This is going to make links based of the data we already have
+    }
+    public void stageFour(JLabel label, ArrayList<String> links){
+        label.setText("Searching... This may take a bit...");
+        WebHandler webHandler = new WebHandler(label, links);
+
+    }
 }

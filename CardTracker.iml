@@ -180,5 +180,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="External Libraries (4)" level="project" />
+    <orderEntry type="library" name="Final Library" level="project" />
   </component>
 </module>
