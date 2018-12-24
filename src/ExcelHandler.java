@@ -22,7 +22,7 @@ public class ExcelHandler
     String directory = "";
 
     public ExcelHandler(JLabel label) {
-        label.setText("Reading in the excel file...");
+        label.setText("Reading and Searching... This may take some time...");
         // We need to actually point the software to the file because it will not export....
         findFile();
         try { InputStream inputStream = this.inp = new FileInputStream(directory);Throwable localThrowable3 = null;

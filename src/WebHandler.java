@@ -18,16 +18,15 @@ public class WebHandler {
     }
     private void searchEbay(){
         System.out.println("Searching ebay");
+        label.setText("Still searching...");
         Double[] priceArray = new Double[links.size()];
         for (int i = 0; i < links.size(); i++) {
             Double total = Double.valueOf(0.0D);
-            NumberFormat formatter = NumberFormat.getCurrencyInstance();
             Document document = null;
             try {
                 document = Jsoup.connect(links.get(i)).get();
-                System.out.println(document);
-                Elements price = document.select(".positive.contains($)");
-                for (int d = 0; d < price.size(); d++){
+                Elements price = document.select(".positive:contains($)");
+               for (int d = 0; d < price.size(); d++){
                     String numericPriceOne = price.get(d).text().replaceAll(",","");
                     String numericPriceTwo = numericPriceOne.substring(1);
                     Double actualNumericPrice = Double.valueOf(numericPriceTwo);
@@ -53,6 +52,7 @@ public class WebHandler {
                 collectionWorth = Double.valueOf(collectionWorth.doubleValue() + prices[i].doubleValue());
             }
         }
-        label.setText("The total value of your collection is: " + collectionWorth);
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        label.setText("The total value of your collection is: " + numberFormat.format(collectionWorth));
     }
 }

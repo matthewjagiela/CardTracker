@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class CardTrackerGUI extends JFrame {
 
@@ -41,8 +42,9 @@ public class CardTrackerGUI extends JFrame {
         new LinkHandler(data,label); //This is going to make links based of the data we already have
     }
     public void stageFour(JLabel label, ArrayList<String> links){
-        label.setText("Searching... This may take a bit...");
-        WebHandler webHandler = new WebHandler(label, links);
+        label.setText("TEST");
+        WebHandler webHandler = new WebHandler(label,links);
 
     }
+
 }
