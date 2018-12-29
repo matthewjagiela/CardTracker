@@ -1,14 +1,8 @@
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import javax.swing.*;
+import org.apache.poi.ss.usermodel.*;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import javax.swing.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 public class ExcelHandler
 {
@@ -60,8 +54,8 @@ public class ExcelHandler
                 if (inputStream != null) if (localThrowable3 != null) try { inputStream.close(); } catch (Throwable localThrowable2) { localThrowable3.addSuppressed(localThrowable2); } else inputStream.close();
             }
         }
-        catch (IOException | ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException localIOException) {
-            label.setText("Wrong File Selected...");
+        catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
             findFile();
         }
 
