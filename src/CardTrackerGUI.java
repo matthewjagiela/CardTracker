@@ -41,7 +41,7 @@ public class CardTrackerGUI extends JFrame {
         new LinkHandler(data,label); //This is going to make links based of the data we already have
     }
     public void stageFour(JLabel label, ArrayList<String> links){
-        label.setText("TEST");
+        label.setText("Let's Go Search...");
         WebHandler webHandler = new WebHandler(label,links);
 
     }

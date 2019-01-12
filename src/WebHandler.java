@@ -13,7 +13,14 @@ public class WebHandler {
     public WebHandler(JLabel label, ArrayList<String> links){
         this.links = links;
         this.label = label;
-        searchEbay();
+        System.out.println("Web Handler...");
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                searchEbay();
+            }
+        });
+        t.start();
 
     }
     private void searchEbay(){
@@ -26,8 +33,8 @@ public class WebHandler {
             try {
                 document = Jsoup.connect(links.get(i)).get();
                 Elements price = document.select(".positive:contains($)");
-               for (int d = 0; d < price.size(); d++){
-                    String numericPriceOne = price.get(d).text().replaceAll(",","");
+                for (int d = 0; d < price.size(); d++) {
+                    String numericPriceOne = price.get(d).text().replaceAll(",", "");
                     String numericPriceTwo = numericPriceOne.substring(1);
                     Double actualNumericPrice = Double.valueOf(numericPriceTwo);
                     total = Double.valueOf(total.doubleValue() + actualNumericPrice.doubleValue());
@@ -37,10 +44,10 @@ public class WebHandler {
                 priceArray[i] = total; //Hold the price array
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("AN ERROR SEARCHING + " +  e.getLocalizedMessage());
+                System.out.println("AN ERROR SEARCHING + " + e.getLocalizedMessage());
             }
 
-
+            label.setText("Price " + i + " of " + links.size() + " found...");
         }
         collectionWorth(priceArray);
     }
